@@ -43,6 +43,12 @@ ng serve
 
 Este comando de Angular CLI permite correr el servidor con las configuraciones previamente establecidas.
 
+En caso de tener problema con la ejecución, se debe correr el siguiente comando para compilar los paquetes de node.
+
+```
+npm install
+```
+
 ### 4. Abrir navegador
 
 Para visualizar la aplicación, se requiere abrir un navegador y poner el siguiente URL.
@@ -55,4 +61,12 @@ Esto hará que nuestro navegador realice una petición al servidor para que le d
 
 > [!IMPORTANT]
 > Como se mencionó en un inicio, esta aplicación consume la API UAM Compartido, por lo que es escencial que la API esté activa para poder realizar todas las operaciones mostradas en este cliente. Por el momento, este cliente solo puede consumir la API de manera local.
+
+## Funcionalidad
+Esta aplicación sigue el siguiente diagrama en el cual podemos observar la parte del backend y frontend, siento este repositorio el frontend o, bien, el cliente. Este cliente consume la API creada en el backend con Java y Spring, realiza peticiones por medio de métodos HTTP para enviar y recuperar información de la base de datos.
+![App](./img-readme/app.png)
+
+
+La siguiente imagen muestra un árbol de rutas que sigue la aplicación. Este árbol muestra qué secciones de la página serán reemplazadas dependiento de la ruta a la que acceda el usuario. Como se puede observar, habrá rutas protegidas que únicamente podrán ser accedidas una vez que el usuario esté autenticado por parte de la API.
+![Rutas](./img-readme/tree.png)
 
