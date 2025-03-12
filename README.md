@@ -3,7 +3,7 @@ Este proyecto es un cliente en Angular que consume los endpoints de la [API UAM 
 
 ## Tecnologías utilizadas
 
-- Angular
+- Angular 19
 - TypeScript
 - Bootstrap
 - HTML
