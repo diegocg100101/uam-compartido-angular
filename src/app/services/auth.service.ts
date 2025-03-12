@@ -34,4 +34,13 @@ export class AuthService {
     }
   }
 
+  public isAdmin() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const tokenDecoded = this.jwtHelperService.decodeToken(token);
+      return tokenDecoded.role === 'ROLE_ADMIN';
+    }
+    return false;
+  }
+
 }

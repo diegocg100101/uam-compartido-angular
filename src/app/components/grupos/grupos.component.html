@@ -2,7 +2,8 @@
     <div class="row vh-100">
         <div class="col d-flex flex-column justify-content-center">
             <div class="d-flex flex-column">
-                <a class="btn btn-primary m-2 w-25" data-bs-toggle="modal" data-bs-target="#alta">Alta grupo</a>
+                <a *ngIf="isAdmin" class="btn btn-primary m-2 w-25" data-bs-toggle="modal" data-bs-target="#alta">Alta
+                    grupo</a>
                 <h2 class="text-center">Grupos en plataforma</h2>
             </div>
 
@@ -32,7 +33,7 @@
                             <td>{{ grupo.profesor.noeconomico + ' ' + grupo.profesor.nombre + ' ' +
                                 grupo.profesor.apellidopaterno + ' ' + grupo.profesor.apellidomaterno }}</td>
                             <td>{{ grupo.cupounidad }}</td>
-                            <td>
+                            <td *ngIf="isAdmin">
                                 <div *ngIf="edicion !== grupo.clavegrupo" style="cursor: pointer;"
                                     (click)="activarEdicion(grupo)">
                                     {{ grupo.inscritos }}
@@ -42,15 +43,18 @@
                                         (change)="actualizarInscritos(grupo, $event)" min="0">
                                 </div>
                             </td>
+                            <td *ngIf="!isAdmin">
+                                {{ grupo.inscritos }}
+                            </td>
                             <td>
-                                <a class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#compartir"
-                                    (click)="guardarGrupo(grupo)">Compartir</a>
+                                <a *ngIf="isAdmin" class="btn btn-primary m-2" data-bs-toggle="modal"
+                                    data-bs-target="#compartir" (click)="guardarGrupo(grupo)">Compartir</a>
                                 <a class="btn btn-secondary m-2" data-bs-toggle="modal" data-bs-target="#horario"
                                     (click)="ponerHorario(grupo)">Horario</a>
-                                <a class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#editar"
-                                    (click)="ponerInfo(grupo)">
+                                <a *ngIf="isAdmin" class="btn btn-success m-2" data-bs-toggle="modal"
+                                    data-bs-target="#editar" (click)="ponerInfo(grupo)">
                                     <i class="bi bi-pencil"></i></a>
-                                <a class="btn btn-danger m-2" (click)="eliminar(grupo.clavegrupo)"><i
+                                <a *ngIf="isAdmin" class="btn btn-danger m-2" (click)="eliminar(grupo.clavegrupo)"><i
                                         class="bi bi-trash"></i></a>
                             </td>
                         </tr>
@@ -61,7 +65,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngIf="isAdmin" class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content text-bg-dark">
             <div class="modal-header">
@@ -172,7 +177,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="alta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngIf="isAdmin" class="modal fade" id="alta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content text-bg-dark">
             <div class="modal-header">
@@ -285,7 +290,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="compartir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngIf="isAdmin" class="modal fade" id="compartir" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-bg-dark">
             <div class="modal-header">

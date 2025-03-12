@@ -4,6 +4,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 import { GrupoService } from '../../services/grupo.service';
 import { Router } from '@angular/router';
 import { GrupoModel } from '../../models/grupo-model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-grupos',
@@ -23,6 +24,7 @@ export class GruposComponent {
   idunidades: string[] = [];
   grupoCompartir: any = { unidad: { idunidad: null, nombre: '' } };
   edicion: any;
+  isAdmin : boolean = false;
 
   formulario = new FormGroup({
     "clavegrupo": new FormControl(''),
@@ -44,7 +46,7 @@ export class GruposComponent {
     "salon": new FormControl(null)
   });
 
-  constructor(private grupoApi: GrupoService, private router: Router) {
+  constructor(private grupoApi: GrupoService, private router: Router, private authService: AuthService) {
     this.formulario.get('unidad')?.valueChanges.subscribe(valor => {
       this.actualizarClaveUnidad(valor)
     })
@@ -104,6 +106,8 @@ export class GruposComponent {
       this.listaOriginal = data;
       this.listaGrupos.grupos = [...this.listaOriginal.grupos];
     })
+
+    this.isAdmin = this.authService.isAdmin();
   }
 
   eliminar(clave: any) {

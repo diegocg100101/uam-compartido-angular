@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, FormsModule, Validators} f
 import { UeaService } from '../../services/uea.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-ueas',
@@ -16,6 +17,7 @@ export class UeasComponent {
   listaOriginal : any = {};
   infoUea : any = {};
   list : any[] = []
+  isAdmin : boolean = false;
 
   formulario = new FormGroup({
     "clave" : new FormControl('', Validators.compose([
@@ -65,7 +67,7 @@ export class UeasComponent {
     ]))
   });
 
-  constructor(private ueaApi : UeaService, private router : Router) {}
+  constructor(private ueaApi : UeaService, private router : Router, private authService : AuthService) {}
 
   limpiar() {
     this.formulario.reset()
@@ -80,6 +82,8 @@ export class UeasComponent {
       this.listaOriginal = data;
       this.listaUea.ueas = [...this.listaOriginal.ueas];
     })
+
+    this.isAdmin = this.authService.isAdmin();
   }
 
   enviar() {

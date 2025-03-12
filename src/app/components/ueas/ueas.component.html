@@ -2,7 +2,7 @@
     <div class="row vh-100">
         <div class="col d-flex flex-column justify-content-center">
             <div class="d-flex flex-column">
-                <a class="btn btn-primary m-2 w-25" data-bs-toggle="modal" data-bs-target="#alta">Alta UEA</a>
+                <a *ngIf="isAdmin" class="btn btn-primary m-2 w-25" data-bs-toggle="modal" data-bs-target="#alta">Alta UEA</a>
                 <h2 class="text-center">UEAs en plataforma</h2>
             </div>
 
@@ -19,7 +19,7 @@
                             <th scope="col">Tronco</th>
                             <th scope="col">Trimestre</th>
                             <th scope="col">Créditos</th>
-                            <th scope="col">Acción</th>
+                            <th scope="col" *ngIf="isAdmin">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +30,7 @@
                             <td>{{ uea.tronco.nombre }}</td>
                             <td>{{ uea.trimestre.nombre }}</td>
                             <td>{{ uea.creditos }}</td>
-                            <td>
+                            <td *ngIf="isAdmin">
                                 <a class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#editar"
                                     (click)="ponerInfo(uea)">
                                     <i class="bi bi-pencil"></i>
