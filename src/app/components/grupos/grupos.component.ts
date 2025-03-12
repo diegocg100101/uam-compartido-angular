@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GrupoService } from '../../services/grupo.service';
 import { Router } from '@angular/router';
 import { GrupoModel } from '../../models/grupo-model';
@@ -27,26 +27,192 @@ export class GruposComponent {
   isAdmin : boolean = false;
 
   formulario = new FormGroup({
-    "clavegrupo": new FormControl(''),
-    "uea": new FormControl(null),
-    "unidad": new FormControl(null),
+    "clavegrupo": new FormControl('', Validators.compose([
+      Validators.required
+    ])),
+    "uea": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
+    "unidad": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
     "horariolist": new FormControl<string[]>([]),
-    "profesor": new FormControl(null),
-    "cupounidad": new FormControl(''),
-    "salon": new FormControl(null),
-    "trimestreestacion": new FormControl('')
+    "profesor": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
+    "cupounidad": new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.max(200),
+      Validators.min(1)
+    ])),
+    "salon": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
+    "trimestreestacion": new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.maxLength(3),
+      Validators.minLength(3)
+    ]))
   });
 
   formularioEditar = new FormGroup({
-    "clavegrupo": new FormControl(''),
-    "uea": new FormControl(null),
-    "unidad": new FormControl(null),
+    "clavegrupo": new FormControl('', Validators.compose([
+      Validators.required
+    ])),
+    "uea": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
+    "unidad": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
     "horariolist": new FormControl<string[]>([]),
-    "profesor": new FormControl(null),
-    "cupounidad": new FormControl(''),
-    "salon": new FormControl(null),
-    "trimestreestacion": new FormControl('')
+    "profesor": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
+    "cupounidad": new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.max(200),
+      Validators.min(1)
+    ])),
+    "salon": new FormControl(null, Validators.compose([
+      Validators.required
+    ])),
+    "trimestreestacion": new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.maxLength(3),
+      Validators.minLength(3)
+    ]))
   });
+
+  // Getters and Setters for formulario
+  get clavegrupo() {
+    return this.formulario.get('clavegrupo');
+  }
+
+  set clavegrupo(value: any) {
+    this.formulario.get('clavegrupo')?.setValue(value);
+  }
+
+  get uea() {
+    return this.formulario.get('uea');
+  }
+
+  set uea(value: any) {
+    this.formulario.get('uea')?.setValue(value);
+  }
+
+  get unidad() {
+    return this.formulario.get('unidad');
+  }
+
+  set unidad(value: any) {
+    this.formulario.get('unidad')?.setValue(value);
+  }
+
+  get horariolist() {
+    return this.formulario.get('horariolist');
+  }
+
+  set horariolist(value: any) {
+    this.formulario.get('horariolist')?.setValue(value);
+  }
+
+  get profesor() {
+    return this.formulario.get('profesor');
+  }
+
+  set profesor(value: any) {
+    this.formulario.get('profesor')?.setValue(value);
+  }
+
+  get cupounidad() {
+    return this.formulario.get('cupounidad');
+  }
+
+  set cupounidad(value: any) {
+    this.formulario.get('cupounidad')?.setValue(value);
+  }
+
+  get salon() {
+    return this.formulario.get('salon');
+  }
+
+  set salon(value: any) {
+    this.formulario.get('salon')?.setValue(value);
+  }
+
+  get trimestreestacion() {
+    return this.formulario.get('trimestreestacion');
+  }
+
+  set trimestreestacion(value: any) {
+    this.formulario.get('trimestreestacion')?.setValue(value);
+  }
+
+  // Getters and Setters for formularioEditar
+  get clavegrupoEditar() {
+    return this.formularioEditar.get('clavegrupo');
+  }
+
+  set clavegrupoEditar(value: any) {
+    this.formularioEditar.get('clavegrupo')?.setValue(value);
+  }
+
+  get ueaEditar() {
+    return this.formularioEditar.get('uea');
+  }
+
+  set ueaEditar(value: any) {
+    this.formularioEditar.get('uea')?.setValue(value);
+  }
+
+  get unidadEditar() {
+    return this.formularioEditar.get('unidad');
+  }
+
+  set unidadEditar(value: any) {
+    this.formularioEditar.get('unidad')?.setValue(value);
+  }
+
+  get horariolistEditar() {
+    return this.formularioEditar.get('horariolist');
+  }
+
+  set horariolistEditar(value: any) {
+    this.formularioEditar.get('horariolist')?.setValue(value);
+  }
+
+  get profesorEditar() {
+    return this.formularioEditar.get('profesor');
+  }
+
+  set profesorEditar(value: any) {
+    this.formularioEditar.get('profesor')?.setValue(value);
+  }
+
+  get cupounidadEditar() {
+    return this.formularioEditar.get('cupounidad');
+  }
+
+  set cupounidadEditar(value: any) {
+    this.formularioEditar.get('cupounidad')?.setValue(value);
+  }
+
+  get salonEditar() {
+    return this.formularioEditar.get('salon');
+  }
+
+  set salonEditar(value: any) {
+    this.formularioEditar.get('salon')?.setValue(value);
+  }
+
+  get trimestreestacionEditar() {
+    return this.formularioEditar.get('trimestreestacion');
+  }
+
+  set trimestreestacionEditar(value: any) {
+    this.formularioEditar.get('trimestreestacion')?.setValue(value);
+  }
 
   constructor(private grupoApi: GrupoService, private router: Router, private authService: AuthService) {
     this.formulario.get('unidad')?.valueChanges.subscribe(valor => {
@@ -186,7 +352,8 @@ export class GruposComponent {
       unidad: this.infoGrupo.unidades.find((unidad: any) => unidad.idunidad === grupo.unidad.idunidad),
       profesor: this.infoGrupo.usuarios.find((noeconomico: any) => noeconomico.noeconomico === grupo.profesor.noeconomico),
       cupounidad: grupo.cupounidad,
-      salon: this.infoGrupo.salones.find((salon: any) => salon.idsalon === grupo.salon.idsalon)
+      salon: this.infoGrupo.salones.find((salon: any) => salon.idsalon === grupo.salon.idsalon),
+      trimestreestacion: grupo.trimestreestacion
     })
   }
 

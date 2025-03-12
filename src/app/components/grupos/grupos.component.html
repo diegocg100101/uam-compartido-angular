@@ -8,7 +8,8 @@
             </div>
 
             <input class="form-control mr-sm-2 mb-2" type="search" name="busqueda"
-                placeholder="Búsqueda por unidad, profesor, clave o trimestre" aria-label="Search" (change)="buscar($event)">
+                placeholder="Búsqueda por unidad, profesor, clave o trimestre" aria-label="Search"
+                (change)="buscar($event)">
 
             <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
                 <table class="table table-dark table-striped text-center w-100">
@@ -83,7 +84,12 @@
                             <div class="mb-3">
                                 <label for="clave" class="form-label">Clave de grupo: </label>
                                 <input formControlName="clavegrupo" type="text" class="form-control" id="clave"
+                                    [ngClass]="{'is-valid': clavegrupoEditar?.valid && clavegrupoEditar?.touched, 'is-invalid': clavegrupoEditar?.invalid && clavegrupoEditar?.touched}"
                                     name="clave" required placeholder="Ingresa la clave" readonly>
+                            </div>
+                            <div class="valid-feedback">
+                            </div>
+                            <div class="invalid-feedback">
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -102,7 +108,12 @@
                             <div class="mb-3">
                                 <label for="cupo" class="form-label">Cupo: </label>
                                 <input formControlName="cupounidad" min="0" type="number" class="form-control" id="cupo"
+                                    [ngClass]="{'is-valid': cupounidadEditar?.valid && cupounidadEditar?.touched, 'is-invalid': cupounidadEditar?.invalid && cupounidadEditar?.touched}"
                                     name="cupo" required placeholder="Ingresa el margen del grupo">
+                            </div>
+                            <div class="valid-feedback">
+                            </div>
+                            <div class="invalid-feedback">
                             </div>
                         </div>
                     </div>
@@ -151,7 +162,13 @@
                             <div class="mb-3">
                                 <label for="tri" class="form-label">Trimestre:</label>
                                 <input formControlName="trimestreestacion" type="text" class="form-control" id="tri"
+                                    [ngClass]="{'is-valid': trimestreestacionEditar?.valid && trimestreestacionEditar?.touched, 'is-invalid': trimestreestacionEditar?.invalid && trimestreestacionEditar?.touched}"
                                     name="clave" required placeholder="Ingresa el trimestre">
+                            </div>
+                            <div class="valid-feedback">
+                            </div>
+                            <div class="invalid-feedback">
+                                El formato debe ser de 3 caracteres
                             </div>
                         </div>
                     </div>
@@ -181,7 +198,8 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Guardar cambios</button>
+                        <button type="submit" class="btn btn-success" [disabled]="formularioEditar.invalid"
+                            data-bs-dismiss="modal">Guardar cambios</button>
                     </div>
                 </form>
             </div>
@@ -204,7 +222,12 @@
                             <div class="mb-3">
                                 <label for="clave" class="form-label">Clave de grupo:</label>
                                 <input formControlName="clavegrupo" type="text" class="form-control" id="clave"
+                                    [ngClass]="{'is-valid': clavegrupo?.valid && clavegrupo?.touched, 'is-invalid': clavegrupo?.invalid && clavegrupo?.touched}"
                                     name="clave" required placeholder="Ingresa la clave">
+                            </div>
+                            <div class="valid-feedback">
+                            </div>
+                            <div class="invalid-feedback">
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -223,7 +246,12 @@
                             <div class="mb-3">
                                 <label for="cupo" class="form-label">Cupo: </label>
                                 <input formControlName="cupounidad" min="0" type="number" class="form-control" id="cupo"
+                                    [ngClass]="{'is-valid': cupounidad?.valid && cupounidad?.touched, 'is-invalid': cupounidad?.invalid && cupounidad?.touched}"
                                     name="cupo" required placeholder="Ingresa el margen del grupo">
+                                <div class="valid-feedback">
+                                </div>
+                                <div class="invalid-feedback">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -272,7 +300,12 @@
                             <div class="mb-3">
                                 <label for="tri" class="form-label">Trimestre:</label>
                                 <input formControlName="trimestreestacion" type="text" class="form-control" id="tri"
+                                [ngClass]="{'is-valid': trimestreestacion?.valid && trimestreestacion?.touched, 'is-invalid': trimestreestacion?.invalid && trimestreestacion?.touched}"
                                     name="clave" required placeholder="Ingresa el trimestre">
+                            </div>
+                            <div class="valid-feedback">
+                            </div>
+                            <div class="invalid-feedback">
                             </div>
                         </div>
                     </div>
@@ -304,7 +337,8 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="button" class="btn btn-primary" (click)="limpiar()">Limpiar</button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Guardar cambios</button>
+                        <button type="submit" class="btn btn-success" [disabled]="formulario.invalid"
+                            data-bs-dismiss="modal">Guardar cambios</button>
                     </div>
                 </form>
             </div>
