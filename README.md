@@ -60,7 +60,7 @@ localhost:4200
 Esto hará que nuestro navegador realice una petición al servidor para que le devuelva la aplicación y sea posible la navegación.
 
 > [!IMPORTANT]
-> Como se mencionó en un inicio, esta aplicación consume la API UAM Compartido, por lo que es escencial que la API esté activa para poder realizar todas las operaciones mostradas en este cliente. Por el momento, este cliente solo puede consumir la API de manera local.
+> Como se mencionó en un inicio, esta aplicación consume la API UAM Compartido, por lo que es escencial que la API esté activa para poder realizar todas las operaciones mostradas en este cliente. Por el momento, este cliente solo puede consumir la API de manera local. Para cambiar la IP de la API se debe modificar la variable **host** en los servicios que se encuentran en **src/app/services**, especificamente los servicios de **api**, **grupo**, **uea** y **user**. 
 
 ## Funcionalidad
 Esta aplicación sigue el siguiente diagrama en el cual podemos observar la parte del backend y frontend, siento este repositorio el frontend o, bien, el cliente. Este cliente consume la API creada en el backend con Java y Spring, realiza peticiones por medio de métodos HTTP para enviar y recuperar información de la base de datos.
