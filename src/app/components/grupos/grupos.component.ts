@@ -33,7 +33,8 @@ export class GruposComponent {
     "horariolist": new FormControl<string[]>([]),
     "profesor": new FormControl(null),
     "cupounidad": new FormControl(''),
-    "salon": new FormControl(null)
+    "salon": new FormControl(null),
+    "trimestreestacion": new FormControl('')
   });
 
   formularioEditar = new FormGroup({
@@ -43,7 +44,8 @@ export class GruposComponent {
     "horariolist": new FormControl<string[]>([]),
     "profesor": new FormControl(null),
     "cupounidad": new FormControl(''),
-    "salon": new FormControl(null)
+    "salon": new FormControl(null),
+    "trimestreestacion": new FormControl('')
   });
 
   constructor(private grupoApi: GrupoService, private router: Router, private authService: AuthService) {
@@ -126,6 +128,7 @@ export class GruposComponent {
 
   enviar() {
     this.formulario.patchValue({ horariolist: this.horario })
+    console.log(this.formulario.value);
     this.grupoApi.altaGrupo(this.formulario.value).subscribe({
       next: (response) => {
         /* TODO */
@@ -165,7 +168,8 @@ export class GruposComponent {
         return grupo.clavegrupo.toLowerCase().includes(textoBusqueda)
           || grupo.unidad.nombre.toLowerCase().includes(textoBusqueda)
           || (grupo.profesor.nombre + ' ' + grupo.profesor.apellidopaterno + ' ' + grupo.profesor.apellidomaterno).toLowerCase().includes(textoBusqueda)
-          || this.quitarAcentos(grupo.profesor.nombre + ' ' + grupo.profesor.apellidopaterno + ' ' + grupo.profesor.apellidomaterno).toLowerCase().includes(textoBusqueda);
+          || this.quitarAcentos(grupo.profesor.nombre + ' ' + grupo.profesor.apellidopaterno + ' ' + grupo.profesor.apellidomaterno).toLowerCase().includes(textoBusqueda)
+          || this.quitarAcentos(grupo.trimestreestacion).toLowerCase().includes(textoBusqueda);
       })
     }
   }
