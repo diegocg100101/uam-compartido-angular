@@ -5,7 +5,7 @@ Este proyecto es un cliente en Angular que consume los endpoints de la [API UAM 
 
 - Angular 19
 - TypeScript
-- Bootstrap
+- Bootstrap v5.3
 - HTML
 - CSS
 
